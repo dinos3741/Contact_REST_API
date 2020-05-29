@@ -11,7 +11,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 // RequestMapping creates an endpoint in the specific path that is inherited by all verbs
-@RequestMapping("/person")
+@RequestMapping("/contacts")
 @RestController
 public class PersonController { // constructor
     @Autowired
@@ -19,14 +19,14 @@ public class PersonController { // constructor
 
     // GET request retrieves all entries from the DB:
     //@JSONGetMapping(value = "/person")
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public String getPerson() {
         return mainService.getAllPeople();
     }
 
     // GET request with specific ID retrieves one entry
     //@JSONGetMapping(value = "/person/{id}")
-    @GetMapping(path="{id}")
+    @GetMapping(path="{id}", produces = "application/json")
     // PathVariable annotation means that the ID is found in the path
     public String getPerson(@PathVariable Long id) {
         return mainService.getPerson(id);
@@ -36,7 +36,7 @@ public class PersonController { // constructor
     // method will be used to send POST requests. NonNull means that the field cannot be empty
     // RequestBody annotation means that we receive the person details from the body of the request
     //@JSONPostMapping(value = "/person")
-    @PostMapping
+    @PostMapping(produces = "application/json")
     public String createPerson(@NonNull @RequestBody String payload) throws Exception {
         return mainService.createPerson(payload);
     }
@@ -50,7 +50,7 @@ public class PersonController { // constructor
 
     // Update details of a person.
     @PutMapping(path="{id}")
-    public String updatePerson(@PathVariable("id") Long id, @RequestBody String payload) {
+    public String updatePerson(@NonNull @PathVariable("id") Long id, @RequestBody String payload) {
         return mainService.updatePerson(id, payload);
     }
 }

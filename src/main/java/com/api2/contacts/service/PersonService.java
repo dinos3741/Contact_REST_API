@@ -1,6 +1,7 @@
 // this is the service class that implements business logic to the person list
 package com.api2.contacts.service;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.api2.contacts.model.Person;
 import com.api2.contacts.repository.PersonRepository;
 import org.json.JSONArray;
@@ -95,6 +96,6 @@ public class PersonService {
 
         // save back to the repository:
         personRepository.save(person);
-        return updateObj.toString();
+        return person.toString();
     }
 }
