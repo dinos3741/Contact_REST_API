@@ -1,14 +1,14 @@
 // this is the class for the model of the data of the person. A standard POJO (plain old Java object) class
-
 package com.api2.contacts.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "person") // the table name in mySQL
+@Entity // an entity class. An instance of this class represents a row in the table:
+@Table(name = "person") // the table name in mySQL.
 public class Person {
-    @Id // id is generated automatically
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) // id is generated automatically
+    // each field of these will become a column in the mysql table "person"
     private Long id;
     private String firstName;
     private String lastName;
