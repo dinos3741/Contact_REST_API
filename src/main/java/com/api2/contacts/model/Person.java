@@ -4,7 +4,7 @@ package com.api2.contacts.model;
 import javax.persistence.*;
 
 @Entity // an entity class. An instance of this class represents a row in the table:
-@Table(name = "person") // the table name in mySQL.
+@Table(name = "person") // the table name in mySQL
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // id is generated automatically

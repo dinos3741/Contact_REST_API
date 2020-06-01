@@ -22,14 +22,12 @@ public class PersonController { // constructor
     }
 
     // GET request retrieves all entries from the DB:
-    //@JSONGetMapping(value = "/person")
     @GetMapping(path="/contacts", produces = "application/json")
     public String getPerson() {
         return mainService.getAllPeople();
     }
 
     // GET request with specific ID retrieves one entry
-    //@JSONGetMapping(value = "/person/{id}")
     @GetMapping(path="/contacts/{id}", produces = "application/json")
     // PathVariable annotation means that the ID is found in the path
     public String getPerson(@PathVariable Long id) {
@@ -39,7 +37,6 @@ public class PersonController { // constructor
     //  Add a person. The annotation PostMapping tells spring that this
     // method will be used to send POST requests. NonNull means that the field cannot be empty
     // RequestBody annotation means that we receive the person details from the body of the request
-    //@JSONPostMapping(value = "/person")
     @PostMapping(path="/contacts", produces = "application/json")
     public String createPerson(@NonNull @RequestBody String payload) throws Exception {
         return mainService.createPerson(payload);
