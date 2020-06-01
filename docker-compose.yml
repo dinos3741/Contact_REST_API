@@ -1,0 +1,27 @@
+# specify the version:
+version: '2'
+
+# specify the services: intentation is important!
+services:
+  # instead of app we could use web or other names also
+  contacts-app:
+    # it builds a container for the app and another for mysql
+    image: contacts-app
+    container_name: contacts-app-cont
+    restart: always
+    build: .
+    ports:
+      # port mapping from external to container
+      - "8080:8080"
+    links:
+      - mysql-standalone
+  mysql-standalone:
+    # another container for mysql
+    container_name: mysql-standalone
+    # here we don't create image from Dockerfile, we pull from dockerhub
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: contacts
+    ports:
+      - "3306:3306"
